@@ -30,6 +30,8 @@ struct ContentView: View {
     
     @FocusState private var amountIsFocused: Bool
     
+    @State private var isRed = false
+    
     let tipPercentages = [10, 15, 20, 25, 0]
     
     var totalPerPerson: Double {
@@ -79,6 +81,8 @@ struct ContentView: View {
                             
                             Text($0, format: .percent)
                             
+                           
+                            
                         }
                         
                     }
@@ -90,6 +94,9 @@ struct ContentView: View {
                     Text(totalPerPerson, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
                     
                 }
+                .background(tipPercent == 0 ? Color.red : Color.clear) // if the tip percent is 0, turn the total per person to red
+                
+            
                 
             }
             .navigationTitle("We Split")
